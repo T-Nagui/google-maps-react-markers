@@ -177,7 +177,8 @@ var createOverlay = function createOverlay(_ref) {
         var projection = _this.getProjection();
         var point = projection.fromLatLngToDivPixel(_this.position);
         if (point === null) return;
-        _this.container.style.transform = "translate(" + Math.round(point.x) + "px, " + Math.round(point.y) + "px)";
+        _this.container.style.top = point.y + 'px';
+        _this.container.style.left = point.x + 'px';
       };
       _this.onRemove = function () {
         if (_this.container.parentNode !== null) {

@@ -33,9 +33,8 @@ const createOverlay = ({ container, pane, position, maps }) => {
       // Computes the pixel coordinates of the given geographical location in the DOM element that holds the draggable map.
       const point = projection.fromLatLngToDivPixel(this.position);
       if (point === null) return;
-      this.container.style.transform = `translate(${Math.round(
-        point.x
-      )}px, ${Math.round(point.y)}px)`;
+      this.container.style.top = point.y + 'px';
+      this.container.style.left = point.x + 'px';
     };
 
     /**
