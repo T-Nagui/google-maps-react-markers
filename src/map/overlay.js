@@ -34,7 +34,6 @@ const createOverlay = ({ container, pane, position, maps }) => {
 			if (point === null) {
 				return
 			}
-			// this.container.style.transform = `translate(${Math.ceil(point.x)}px, ${Math.ceil(point.y)}px)`
 			this.container.style.top = point.y + 'px'
 			this.container.style.left = point.x + 'px'
 		}
