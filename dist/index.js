@@ -112,8 +112,7 @@ var useScript = function useScript(script) {
         scriptToAdd.removeEventListener('error', setStateFromEvent);
       }
     };
-  },
-  [script]);
+  }, [script]);
   return status;
 };
 
@@ -177,8 +176,11 @@ var createOverlay = function createOverlay(_ref) {
       _this.draw = function () {
         var projection = _this.getProjection();
         var point = projection.fromLatLngToDivPixel(_this.position);
-        if (point === null) return;
-        _this.container.style.transform = "translate(" + Math.ceil(point.x) + "px, " + Math.ceil(point.y) + "px)";
+        if (point === null) {
+          return;
+        }
+        _this.container.style.top = point.y + 'px';
+        _this.container.style.left = point.x + 'px';
       };
       _this.onRemove = function () {
         if (_this.container.parentNode !== null) {
@@ -190,7 +192,6 @@ var createOverlay = function createOverlay(_ref) {
       _this.position = position;
       return _this;
     }
-
     return Overlay;
   }(maps.OverlayView);
   return new Overlay(container, pane, position);
@@ -226,7 +227,6 @@ var OverlayView = function OverlayView(_ref) {
       maps: maps
     });
   }, [container, maps, pane, position]);
-
   var childrenProps = useMemoCompare(children === null || children === void 0 ? void 0 : children.props, function (prev, next) {
     return prev && prev.lat === next.lat && prev.lng === next.lng;
   });
@@ -238,7 +238,6 @@ var OverlayView = function OverlayView(_ref) {
       };
     }
   }, [map, childrenProps]);
-
   React.useEffect(function () {
     container.style.zIndex = "" + zIndex;
   }, [zIndex, container]);
@@ -272,7 +271,6 @@ var MapMarkers = function MapMarkers(_ref) {
           lng: child.props.lng
         };
         var zIndex = child.props.zIndex || undefined;
-
         return /*#__PURE__*/React__default.createElement(OverlayView, {
           position: latLng,
           map: map,
